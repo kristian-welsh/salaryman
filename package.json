@@ -1,0 +1,15 @@
+{
+  "name": "salaryman",
+  "version": "1.0.0",
+  "description": "machine learning webserver project",
+  "main": "index.js",
+  "scripts": {
+    "test": "node src/server/js/index.js"
+  },
+  "author": "Kristian J Welsh",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "fs": "0.0.1-security"
+  }
+}
