@@ -2,7 +2,7 @@ const routing_lib = require('./lib/routing.js')
 const training_feature = require('./endpoints/train.js')
 
 const PORT = 8080
-const TRAIN_ACTION = training_feature;
+const TRAIN_ACTION = training_feature.action;
 
 let router = new routing_lib.Router();
 
