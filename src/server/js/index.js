@@ -1,7 +1,10 @@
 const express = require('express')
 const fs = require('fs')
+const routing_lib = require('./lib/routing.js')
+const training_feature = require('./endpoints/train.js')
 
-const TRAIN_ACTION = require('./endpoints/train.js')
+const router = new routing_lib.Router();
+const TRAIN_ACTION = training_feature;
 
 const PORT = 8080
 // relative to project root

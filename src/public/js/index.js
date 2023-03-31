@@ -1,1 +1,3 @@
-alert("hello, world");
+function hitEndpoint () {
+    alert("hello, world");
+}

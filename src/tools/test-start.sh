@@ -1,19 +1,13 @@
 {
 	# run server in backround
 	echo integration tests Setting up
-	npm test &>/dev/null&
+    ./src/tools/setup.sh
 	sleep 2
 	# run integration tests
 	echo integration tests Starting
-	$(find ./src/test/integration | grep ".sh")
-} 2>/dev/null
-# teardown
+	./src/tools/integration.sh
+}
 echo integration tests Tearing down 
-set +m # disable job control printing
-kill $(pgrep npm) &>/dev/null # kill npm
-kill $(pgrep node) &>/dev/null # kill node
-sleep 1
-set -m # job control printing is global, re-enable it
-# finished
+./src/tools/teardown.sh
 echo integration tests Complete
 

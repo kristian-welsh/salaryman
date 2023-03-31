@@ -3,4 +3,4 @@ var object = {
 	run: () => "it works! post response body\n"
 }
 
-module.exports = object
+module.exports = { "action": object }
