@@ -3,11 +3,6 @@ const express = require('express')
 
 const API_RPC = '/api/rpc/v1/';
 
-
-const PUBLIC_PATH = filesystem.PUBLIC_PATH;
-const PUBLIC_HTML_PATH = PUBLIC_PATH + 'html/';
-const PUBLIC_JS_PATH = PUBLIC_PATH + 'js/';
-
 let app = express();
 
 // todo
@@ -18,7 +13,7 @@ class Router {
     routeServerEndpoint(api, uri, endpointAction) {
         return app.post(api + uri, (webRequest, webResponse) => {
             let responseBody = transformResp(endpointAction.run(transformReq(webRequest)));
-            webResponse.set({'Content-Type': 'application/json'});
+            webResponse.header('Content-Type', 'application/json');
             webResponse.send(responseBody);
             webResponse.end();
         });
@@ -27,7 +22,7 @@ class Router {
     routePath(uri, resourcePath, contentType) {
         return app.get(uri, (webRequest, webResponse) => {
             let resource = filesystem.fetchResource(resourcePath);
-            webResponse.set({'Content-Type': contentType});
+            webResponse.header('Content-Type', contentType);
             webResponse.send(resource);
             webResponse.end();
         });
@@ -41,16 +36,8 @@ class Router {
         });
     }
 
-    routePage(uri, pageName) {
-        this.routePath(uri, PUBLIC_HTML_PATH + pageName, 'text/html');
-    }
-
-    routeScript(uri, pageName) {
-        this.routePath(uri, PUBLIC_JS_PATH + pageName, 'text/javascript');
-    }
-
     routeEndpoint(path, action) {
-        this.routeServerEndpoint(API_RPC, SERVER_PATH + 'endpoints/' + path, action);
+        this.routeServerEndpoint(API_RPC, path, action);
     }
 
     constructor() {
